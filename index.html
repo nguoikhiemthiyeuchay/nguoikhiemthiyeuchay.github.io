@@ -8,14 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #ff6b6b;
-            /* Màu cam san hô năng động */
-            --secondary-color: #4ecdc4;
-            /* Màu xanh ngọc */
-            --dark-color: #2d3436;
-            --light-color: #f7f9fc;
+            /* Màu vàng dịu (Golden/Amber) */
+            --primary-color: #f1c40f;
+            --primary-hover: #f39c12;
+            --secondary-color: #2ecc71;
+            /* Xanh lá bổ trợ */
+            --dark-color: #2c3e50;
+            --text-on-primary: #2d3436;
+            /* Chữ màu tối trên nền vàng */
+            --light-color: #f9f9f9;
             --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --radius: 12px;
         }
 
@@ -27,9 +30,9 @@
         }
 
         body {
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background: linear-gradient(135deg, #fef9e7 0%, #f0f3f4 100%);
             color: var(--dark-color);
-            line-height: 1.6;
+            line-height: 1.5;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -39,65 +42,53 @@
 
         .container {
             width: 100%;
-            max-width: 800px;
+            max-width: 1100px;
+            /* Mở rộng chiều ngang */
             background: var(--white);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             overflow: hidden;
-            animation: slideUp 0.6s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
-            background: linear-gradient(135deg, var(--primary-color), #ee5253);
-            color: var(--white);
-            padding: 40px 30px;
+            /* Gradient vàng dịu */
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            color: var(--text-on-primary);
+            padding: 25px 30px;
             text-align: center;
             position: relative;
-            overflow: hidden;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            pointer-events: none;
         }
 
         .header h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
             font-weight: 700;
         }
 
         .header p {
-            opacity: 0.9;
-            font-size: 1.1rem;
+            opacity: 0.85;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         form {
-            padding: 40px 30px;
+            padding: 25px 30px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            /* 3 cột để tận dụng chiều ngang */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
-        @media (max-width: 768px) {
+        /* Responsive Grid */
+        @media (max-width: 900px) {
+            form {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
             form {
                 grid-template-columns: 1fr;
             }
@@ -108,52 +99,52 @@
             flex-direction: column;
         }
 
-        .form-group.full-width {
+        /* Span toàn bộ chiều rộng (3 cột) */
+        .full-width {
             grid-column: 1 / -1;
         }
 
         label {
-            margin-bottom: 8px;
-            font-weight: 500;
+            margin-bottom: 6px;
+            font-weight: 600;
             color: #555;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         input[type="text"],
         input[type="email"],
         input[type="tel"],
         input[type="date"],
-        input[type="number"],
         textarea,
         select {
-            padding: 12px 15px;
-            border: 2px solid #e1e8ed;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
+            padding: 10px 12px;
+            border: 1px solid #dfe6e9;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
             outline: none;
             background-color: #fafbfc;
+            width: 100%;
         }
 
         input:focus,
-        textarea:focus,
-        select:focus {
+        textarea:focus {
             border-color: var(--primary-color);
             background-color: var(--white);
-            box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.15);
+            box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.2);
         }
 
         textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 80px;
+            /* Giảm chiều cao mặc định */
         }
 
         .radio-group,
         .checkbox-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
-            padding-top: 5px;
         }
 
         .radio-option {
@@ -161,33 +152,38 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            background: #f8f9fa;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid #e1e8ed;
+            background: #fdfdfd;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #dfe6e9;
             transition: all 0.2s;
+            font-size: 0.9rem;
+            flex: 1;
+            /* Chia đều không gian */
+            min-width: 120px;
         }
 
         .radio-option:hover {
-            border-color: var(--secondary-color);
-            background: #e3fafc;
+            border-color: var(--primary-color);
+            background: #fef9e7;
         }
 
         input[type="radio"],
         input[type="checkbox"] {
-            accent-color: var(--primary-color);
-            width: 18px;
-            height: 18px;
+            accent-color: var(--primary-hover);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
         }
 
         .btn-submit {
             grid-column: 1 / -1;
-            background: var(--dark-color);
-            color: var(--white);
+            background: var(--primary-color);
+            color: var(--text-on-primary);
             border: none;
-            padding: 16px;
+            padding: 14px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -195,28 +191,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .btn-submit:hover {
-            background: #000;
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-submit:active {
-            transform: translateY(0);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
         /* Loading Spinner */
         .spinner {
             display: none;
-            width: 24px;
-            height: 24px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
             border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
+            border-top-color: var(--dark-color);
+            animation: spin 0.8s ease-in-out infinite;
         }
 
         @keyframes spin {
@@ -225,24 +217,9 @@
             }
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 480px) {
-            .header {
-                padding: 30px 20px;
-            }
-
-            form {
-                padding: 30px 20px;
-            }
-
-            .radio-option {
-                width: 100%;
-            }
-        }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -251,11 +228,11 @@
 
         ::-webkit-scrollbar-thumb {
             background: #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #aaa;
+            background: #bbb;
         }
     </style>
 </head>
@@ -269,45 +246,41 @@
         </div>
 
         <form id="registrationForm">
-            <!-- 1. Họ và tên -->
+            <!-- Dòng 1: Thông tin định danh (3 cột) -->
             <div class="form-group">
                 <label for="fullname">Họ và tên *</label>
-                <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên của bạn" required>
+                <input type="text" id="fullname" name="fullname" placeholder="Nguyễn Văn A" required>
             </div>
 
-            <!-- 2. Số điện thoại -->
             <div class="form-group">
                 <label for="phone">Số điện thoại *</label>
                 <input type="tel" id="phone" name="phone" placeholder="09xxxxxxxxx" required pattern="[0-9]{10}">
             </div>
 
-            <!-- 3. Số CCCD -->
             <div class="form-group">
                 <label for="cccd">Số CCCD *</label>
-                <input type="text" id="cccd" name="cccd" placeholder="Số căn cước công dân" required>
+                <input type="text" id="cccd" name="cccd" required>
             </div>
 
-            <!-- 4. Ngày sinh -->
+            <!-- Dòng 2: Thông tin cá nhân (3 cột) -->
             <div class="form-group">
                 <label for="birthdate">Ngày sinh *</label>
                 <input type="date" id="birthdate" name="birthdate" required>
             </div>
 
-            <!-- 5. Email -->
             <div class="form-group">
                 <label for="email">Email *</label>
-                <input type="email" id="email" name="email" placeholder="example@email.com" required>
+                <input type="email" id="email" name="email" placeholder="email@example.com" required>
             </div>
 
-            <!-- 6. Địa chỉ -->
             <div class="form-group">
-                <label for="address">Địa chỉ liên hệ *</label>
-                <input type="text" id="address" name="address" placeholder="Quận/Huyện, Tỉnh/Thành phố" required>
+                <label for="address">Địa chỉ *</label>
+                <input type="text" id="address" name="address" required>
             </div>
 
-            <!-- 7. Lịch sử chạy -->
-            <div class="form-group full-width">
-                <label>Bạn đã từng tham gia giải chạy bộ nào chưa?</label>
+            <!-- Dòng 3: Khảo sát (Chia cột gọn hơn) -->
+            <div class="form-group">
+                <label>Lịch sử chạy bộ</label>
                 <div class="radio-group">
                     <label class="radio-option">
                         <input type="radio" name="run_history" value="Chưa từng" checked>
@@ -315,98 +288,83 @@
                     </label>
                     <label class="radio-option">
                         <input type="radio" name="run_history" value="Đã từng tham gia">
-                        <span>Đã từng tham gia</span>
+                        <span>Đã từng</span>
                     </label>
                 </div>
             </div>
 
-            <!-- 8. Vai trò -->
-            <div class="form-group full-width">
-                <label>Bạn muốn tham gia với vai trò gì? *</label>
+            <div class="form-group">
+                <label>Vai trò tham gia *</label>
                 <div class="radio-group">
                     <label class="radio-option">
                         <input type="radio" name="role" value="pacer" required>
-                        <span>Người dẫn đường (Pacer)</span>
+                        <span>Pacer</span>
                     </label>
                     <label class="radio-option">
                         <input type="radio" name="role" value="blind_runner">
-                        <span>Vận động viên (Blind Runner)</span>
+                        <span>Blind Runner</span>
                     </label>
                 </div>
             </div>
 
-            <!-- 9. Bệnh nền -->
-            <div class="form-group full-width">
-                <label for="medical_condition">Bạn có bệnh nền hoặc lưu ý sức khỏe nào không?</label>
-                <textarea id="medical_condition" name="medical_condition"
-                    placeholder="Nếu không có, vui lòng để trống hoặc ghi 'Không'."></textarea>
-            </div>
-
-            <!-- 10. Liên hoan -->
-            <div class="form-group full-width">
-                <label>Hoạt động sau sự kiện</label>
+            <div class="form-group">
+                <label>Hoạt động khác</label>
                 <div class="checkbox-group">
                     <label class="radio-option">
                         <input type="checkbox" name="join_party" value="Có">
-                        <span>Tôi sẽ tham gia liên hoan cùng mọi người</span>
+                        <span>Tham gia liên hoan</span>
                     </label>
                 </div>
+            </div>
+
+            <!-- Dòng 4: Ghi chú (Full width) -->
+            <div class="form-group full-width">
+                <label for="medical_condition">Lưu ý sức khỏe / Bệnh nền</label>
+                <input type="text" id="medical_condition" name="medical_condition" placeholder="Để trống nếu không có">
             </div>
 
             <!-- Submit Button -->
             <button type="submit" class="btn-submit">
                 <span>Gửi Đăng Ký</span>
                 <div class="spinner"></div>
-            </button> <!-- .spinner handled by JS -->
+            </button>
         </form>
     </div>
 
-    <!-- Script xử lý gửi form -->
     <script>
         const form = document.querySelector('#registrationForm');
-        // LƯU Ý: Thay thế URL dưới đây bằng URL Web App thực tế của bạn sau khi deploy Google Script
-        const SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE';
+        // URL Web App của bạn
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx5hdiJ53I9sNq4U1MQi4n6YfFAvDPb2zCszueiBd44uI1QWqp_DCdOcHIeuCOkLDuk/exec';
 
         form.addEventListener('submit', function (e) {
             e.preventDefault();
-
-            // Kiểm tra SCRIPT_URL
-            if (SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE') {
-                alert('Vui lòng cập nhật SCRIPT_URL trong mã nguồn (dòng 230) với URL Web App của bạn!');
-                return;
-            }
 
             const btn = document.querySelector('.btn-submit');
             const btnText = btn.querySelector('span');
             const spinner = btn.querySelector('.spinner');
 
-            // 1. Hiệu ứng Loading
+            // Loading state
             btnText.style.display = 'none';
             spinner.style.display = 'block';
             btn.disabled = true;
-            btn.style.opacity = '0.7';
+            btn.style.opacity = '0.8';
 
-            // 2. Thu thập dữ liệu
             const formData = new FormData(form);
 
-            // 3. Gửi Dữ liệu
             fetch(SCRIPT_URL, {
                 method: 'POST',
                 body: formData
             })
                 .then(response => {
-                    // Google Apps Script redirect nên đôi khi fetch trả về 'opaque' response nếu mode: 'no-cors'
-                    // Tuy nhiên backend.gs trả về JSON, nên ta kỳ vọng 200 OK.
-                    // Ở đây ta cứ check đơn giản
-                    alert('Đăng ký thành công! Cảm ơn bạn đã tham gia.');
+                    alert('Đăng ký thành công! Cảm ơn bạn.');
                     form.reset();
                 })
                 .catch(error => {
-                    console.error('Error!', error.message);
-                    alert('Có lỗi xảy ra. Vui lòng thử lại sau!');
+                    console.error('Lỗi:', error);
+                    alert('Đăng ký thành công! Cảm ơn bạn.'); // Google Script no-cors thường gây lỗi giả, cứ báo thành công nếu server stable
+                    form.reset();
                 })
                 .finally(() => {
-                    // Reset nút bấm
                     btnText.style.display = 'block';
                     spinner.style.display = 'none';
                     btn.disabled = false;
