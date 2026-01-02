@@ -342,12 +342,32 @@
             const btnText = btn.querySelector('span');
             const spinner = btn.querySelector('.spinner');
 
-            // Loading state
+            // Tạo vùng hiển thị thông báo nếu chưa có
+            let statusDiv = document.getElementById('statusMessage');
+            if (!statusDiv) {
+                statusDiv = document.createElement('div');
+                statusDiv.id = 'statusMessage';
+                statusDiv.style.marginTop = '15px';
+                statusDiv.style.padding = '10px';
+                statusDiv.style.borderRadius = '5px';
+                statusDiv.style.fontWeight = 'bold';
+                statusDiv.style.textAlign = 'center';
+                statusDiv.style.display = 'none';
+                form.appendChild(statusDiv);
+            }
+
+            // Reset thông báo cũ
+            statusDiv.style.display = 'none';
+            statusDiv.className = '';
+            statusDiv.innerHTML = '';
+
+            // 1. Hiệu ứng Loading
             btnText.style.display = 'none';
             spinner.style.display = 'block';
             btn.disabled = true;
-            btn.style.opacity = '0.8';
+            btn.style.opacity = '0.7';
 
+            // 2. Thu thập dữ liệu
             const formData = new FormData(form);
 
             // 3. Gửi Dữ liệu
@@ -356,30 +376,43 @@
                 body: formData
             })
                 .then(response => {
-                    return response.json(); // Cố gắng đọc phản hồi JSON từ server
+                    return response.json();
                 })
                 .then(data => {
                     if (data.result === 'success') {
-                        alert('Đăng ký thành công! Cảm ơn bạn.');
+                        // Thành công
+                        statusDiv.style.display = 'block';
+                        statusDiv.style.backgroundColor = '#d4edda';
+                        statusDiv.style.color = '#155724';
+                        statusDiv.style.border = '1px solid #c3e6cb';
+                        statusDiv.innerText = '✅ Đăng ký thành công! Cảm ơn bạn.';
                         form.reset();
                     } else {
-                        // Server trả về lỗi logic (ví dụ: lỗi script)
-                        throw new Error(data.message || 'Lỗi không xác định từ Server');
+                        throw new Error(data.message || 'Lỗi từ Server');
                     }
                 })
                 .catch(error => {
                     console.error('Lỗi chi tiết:', error);
 
-                    // Hiển thị thông báo lỗi rõ ràng cho người dùng
-                    let msg = 'GỬI THẤT BẠI!\n';
+                    // Hiển thị lỗi
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.backgroundColor = '#f8d7da';
+                    statusDiv.style.color = '#721c24';
+                    statusDiv.style.border = '1px solid #f5c6cb';
+
+                    let msg = '❌ GỬI THẤT BẠI!<br>';
                     if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-                        msg += 'Lỗi kết nối hoặc Lỗi CORS.\n\nNGUYÊN NHÂN PHỔ BIẾN:\n1. Bạn chưa chọn "Who has access: Anyone" khi Deploy.\n2. Script của bạn bị lỗi cú pháp (Syntax Error).\n3. Bạn chưa tạo bản "New deployment" sau khi sửa code.';
+                        msg += '⚠️ <b>Lỗi kết nối / CORS / URL sai.</b><br>';
+                        msg += 'Hãy kiểm tra:<br>';
+                        msg += '1. URL Script có đúng không? (Thử paste vào trình duyệt xem chạy không)<br>';
+                        msg += '2. Đã chọn "Anyone" khi Deploy chưa?<br>';
                     } else {
                         msg += error.message;
                     }
-                    alert(msg);
+                    statusDiv.innerHTML = msg;
                 })
                 .finally(() => {
+                    // Reset nút bấm
                     btnText.style.display = 'block';
                     spinner.style.display = 'none';
                     btn.disabled = false;
