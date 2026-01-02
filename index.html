@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng Ký Tham Gia - Người Khiếm Thị Yêu Chạy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Màu vàng dịu (Golden/Amber) */
@@ -26,7 +26,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Nunito', sans-serif;
         }
 
         body {
@@ -44,7 +44,8 @@
             width: 100%;
             max-width: 1100px;
             /* Mở rộng chiều ngang */
-            background: var(--white);
+            background: #fffcf2;
+            /* Màu vàng kem dịu nhẹ */
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             overflow: hidden;
@@ -56,20 +57,36 @@
             /* Gradient vàng dịu */
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
             color: var(--text-on-primary);
-            padding: 25px 30px;
-            text-align: center;
+            padding: 20px 30px;
+            text-align: left;
+            /* Căn trái text */
             position: relative;
+            display: flex;
+            /* Dùng Flexbox */
+            align-items: center;
+            /* Căn giữa theo chiều dọc */
+            gap: 20px;
+            /* Khoảng cách giữa logo và text */
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            /* Giữ tỷ lệ ảnh */
+            border-radius: 8px;
+            /* Bo nhẹ góc cho đẹp, vẫn giữ dáng vuông */
+            border: 2px solid white;
             background-color: #fff;
+            /* Nền trắng để nổi bật trên nền vàng */
+            padding: 2px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            /* Bóng đổ tạo chiều sâu */
+            margin-bottom: 0;
+        }
+
+        .header-content {
+            flex: 1;
         }
 
         .header h1 {
@@ -253,8 +270,10 @@
     <div class="container">
         <div class="header">
             <img src="./bbr463264267_413043258503863_4831611472487948532_n.jpg" alt="Logo BBR" class="logo">
-            <h1>Đăng Ký Tham Gia</h1>
-            <p>Sự kiện chạy bộ đồng hành cùng người khiếm thị</p>
+            <div class="header-content">
+                <h1>Đăng Ký Tham Gia</h1>
+                <p>Sự kiện chạy bộ đồng hành cùng người khiếm thị</p>
+            </div>
         </div>
 
         <form id="registrationForm">
@@ -277,7 +296,7 @@
             <!-- Dòng 2: Thông tin cá nhân (3 cột) -->
             <div class="form-group">
                 <label for="birthdate">Ngày sinh *</label>
-                <input type="date" id="birthdate" name="birthdate" required>
+                <input type="date" id="birthdate" name="birthdate" required value="2000-01-01">
             </div>
 
             <div class="form-group">
@@ -291,8 +310,8 @@
             </div>
 
             <!-- Dòng 3: Khảo sát (Chia cột gọn hơn) -->
-            <div class="form-group">
-                <label>Lịch sử chạy bộ</label>
+            <div class="form-group full-width">
+                <label>Bạn đã từng tham gia giải chạy nào chưa?</label>
                 <div class="radio-group">
                     <label class="radio-option">
                         <input type="radio" name="run_history" value="Chưa từng" checked>
@@ -305,26 +324,31 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Vai trò tham gia *</label>
+            <div class="form-group full-width">
+                <label>Bạn sẽ tham gia cùng chúng tôi với vai trò là người dẫn đường (pacer) hay vận động viên
+                    (blind-runner)? *</label>
                 <div class="radio-group">
                     <label class="radio-option">
                         <input type="radio" name="role" value="pacer" required>
-                        <span>Pacer</span>
+                        <span>Người dẫn đường (Pacer)</span>
                     </label>
                     <label class="radio-option">
                         <input type="radio" name="role" value="blind_runner">
-                        <span>Blind Runner</span>
+                        <span>Vận động viên (Blind Runner)</span>
                     </label>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>Hoạt động khác</label>
-                <div class="checkbox-group">
+            <div class="form-group full-width">
+                <label>Bạn có tham gia buổi liên hoan cùng chúng tôi không?</label>
+                <div class="radio-group">
                     <label class="radio-option">
-                        <input type="checkbox" name="join_party" value="Có">
-                        <span>Tham gia liên hoan</span>
+                        <input type="radio" name="join_party" value="Tham gia giải chạy" checked>
+                        <span>Chỉ tham gia giải chạy</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="join_party" value="Tham gia giải chạy và liên hoan">
+                        <span>Tham gia chạy và liên hoan</span>
                     </label>
                 </div>
             </div>
@@ -382,6 +406,12 @@
 
             // 2. Thu thập dữ liệu
             const formData = new FormData(form);
+
+            // Xử lý logic dữ liệu tùy chỉnh
+            const medical = formData.get('medical_condition');
+            if (!medical || medical.trim() === '') {
+                formData.set('medical_condition', 'Không có bệnh nền');
+            }
 
             // 3. Gửi Dữ liệu
             fetch(SCRIPT_URL, {
