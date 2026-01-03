@@ -272,7 +272,7 @@
             <img src="./bbr463264267_413043258503863_4831611472487948532_n.jpg" alt="Logo BBR" class="logo">
             <div class="header-content">
                 <h1>Đăng Ký Tham Gia</h1>
-                <p>Sự kiện chạy bộ đồng hành cùng người khiếm thị</p>
+                <p>Giải chạy “Vượt qua bóng tối” của CLB Người khiếm thị yêu chạy</p>
             </div>
         </div>
 
@@ -289,8 +289,8 @@
             </div>
 
             <div class="form-group">
-                <label for="cccd">Số CCCD *</label>
-                <input type="text" id="cccd" name="cccd" required>
+                <label for="club">CLB đã/đang tham gia</label>
+                <input type="text" id="club" name="club" placeholder="Tên CLB (nếu có)">
             </div>
 
             <!-- Dòng 2: Thông tin cá nhân (3 cột) -->
@@ -371,7 +371,8 @@
         const form = document.querySelector('#registrationForm');
         // URL Web App của bạn
         const SCRIPT_URL =
-            'https://script.google.com/macros/s/AKfycby79ssbfY-Agm3Qhy9HfEHriafdKFn1XbcVPPxGhMaaC_NRax0vx7xx0GjGrXqrMdJS/exec';
+            'https://script.google.com/macros/s/AKfycbxuIUQXEFb9E_sQYsweP-6jvfaDkTzpHld2NI4oHKsEMrts5BkcObgvHZuiLE3fqUJD/exec';
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
 
