@@ -41,11 +41,11 @@
         }
 
         .container {
-            width: 100%;
-            max-width: 1100px;
-            /* Mở rộng chiều ngang */
-            background: #fffcf2;
-            /* Màu vàng kem dịu nhẹ */
+            width: 98%;
+            max-width: 1400px;
+            /* Mở rộng chiều ngang để hiển thị hết ảnh nền */
+            background: url('./brrz7392950064685_0e92c39f11322586c37c902ae3452840.jpg') no-repeat center center;
+            background-size: cover;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
             overflow: hidden;
@@ -134,8 +134,11 @@
 
         label {
             margin-bottom: 6px;
-            font-weight: 600;
-            color: #555;
+            font-weight: 700;
+            color: #2c3e50;
+            /* Tăng độ đậm màu chữ label để dễ đọc trên nền ảnh */
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+            /* Viền trắng nhẹ cho chữ */
             font-size: 0.9rem;
         }
 
@@ -151,7 +154,8 @@
             font-size: 0.95rem;
             transition: all 0.2s ease;
             outline: none;
-            background-color: #fafbfc;
+            background-color: rgba(255, 255, 255, 0.65);
+            /* Trong suốt để nhìn thấy nền */
             width: 100%;
         }
 
@@ -180,7 +184,8 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            background: #fdfdfd;
+            background: rgba(255, 255, 255, 0.65);
+            /* Trong suốt để nhìn thấy nền */
             padding: 8px 12px;
             border-radius: 6px;
             border: 1px solid #dfe6e9;
@@ -325,12 +330,12 @@
             </div>
 
             <div class="form-group full-width">
-                <label>Bạn sẽ tham gia cùng chúng tôi với vai trò là người dẫn đường (pacer) hay vận động viên
+                <label>Bạn sẽ tham gia cùng chúng tôi với vai trò là người dẫn đường (Guide) hay vận động viên
                     (blind-runner)? *</label>
                 <div class="radio-group">
                     <label class="radio-option">
-                        <input type="radio" name="role" value="pacer" required>
-                        <span>Người dẫn đường (Pacer)</span>
+                        <input type="radio" name="role" value="guide" required>
+                        <span>Người dẫn đường (Guide)</span>
                     </label>
                     <label class="radio-option">
                         <input type="radio" name="role" value="blind_runner">
