@@ -117,14 +117,26 @@
             }
         }
 
+        /* Animation trượt ảnh nền */
+        @keyframes bg-slide {
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 100% center;
+            }
+        }
+
         @media (max-width: 600px) {
             form {
                 grid-template-columns: 1fr;
             }
 
-            /* Trên điện thoại dọc: Căn background vào vị trí 'mảnh thứ 2' (khoảng 37%) */
+            /* Trên điện thoại dọc: Slide trượt ngang background qua lại */
             .container {
-                background-position: 37% center !important;
+                background-position: 0% center;
+                animation: bg-slide 60s linear infinite alternate;
             }
         }
 
